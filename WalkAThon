@@ -15,20 +15,31 @@ puts "Please enter the number of laps completed by each person:"
 
 max_earned = 0
 winner = 0
+total_earned = 0
 
 until walkerCounter == 6 do
   walker[:laps] = gets.chomp.to_i
   walker[:number] = walkerCounter
   walker[:earned] = (walker[:laps].to_f * amountPerPerson).to_f
-  puts walker
+  puts "Walker ##{walker[:number]} completed #{walker[:laps]} and earned #{walker[:earned]}\n"
 
   if walker[:earned] > max_earned
     max_earned = walker[:earned]
     winner = walker[:number]
   end
 
+  total_earned += walker[:earned]
+
   walkerCounter += 1
 end
 
-puts max_earned
-puts winner
+puts "Highest Earning Walker: #{winner}, with $#{max_earned}"
+
+puts "Total amount earned: $#{total_earned}"
+
+puts "Goal met?"
+if total_earned >= goal
+  puts "YES :-)"
+else
+  puts "NO :-("
+end
