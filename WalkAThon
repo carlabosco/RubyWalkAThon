@@ -21,7 +21,7 @@ until walkerCounter == 6 do
   walker[:laps] = gets.chomp.to_i
   walker[:number] = walkerCounter
   walker[:earned] = (walker[:laps].to_f * amountPerPerson).to_f
-  puts "Walker ##{walker[:number]} completed #{walker[:laps]} and earned #{walker[:earned]}\n"
+  puts "Walker ##{walker[:number]} completed #{walker[:laps]} laps and earned #{format("$%.2f", walker[:earned])}\n"
 
   if walker[:earned] > max_earned
     max_earned = walker[:earned]
@@ -33,13 +33,15 @@ until walkerCounter == 6 do
   walkerCounter += 1
 end
 
-puts "Highest Earning Walker: #{winner}, with $#{max_earned}"
+puts "Highest Earning Walker: #{winner}, with #{format("$%.2f",max_earned)}"
 
-puts "Total amount earned: $#{total_earned}"
+puts "Total amount earned: #{format("$%.2f",total_earned)}"
 
 puts "Goal met?"
 if total_earned >= goal
   puts "YES :-)"
+  puts "You went #{format("$%.2f", total_earned - goal)} above the goal."
 else
   puts "NO :-("
+  puts "You missed the goal by #{format("$%.2f", goal - total_earned)}"
 end
