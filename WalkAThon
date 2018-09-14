@@ -1,0 +1,34 @@
+puts "Welcome to Silly Pumpkin's Walk-A-Thon Tracker!
+Our goal is to raise money!\n\n"
+
+puts "Enter the goal for this event:"
+goal = gets.chomp.to_f
+
+puts "Enter the amount earned per lap (per person):"
+amountPerPerson = gets.chomp.to_f
+
+walker = Hash.new()
+walkerCounter = 1
+
+
+puts "Please enter the number of laps completed by each person:"
+
+max_earned = 0
+winner = 0
+
+until walkerCounter == 6 do
+  walker[:laps] = gets.chomp.to_i
+  walker[:number] = walkerCounter
+  walker[:earned] = (walker[:laps].to_f * amountPerPerson).to_f
+  puts walker
+
+  if walker[:earned] > max_earned
+    max_earned = walker[:earned]
+    winner = walker[:number]
+  end
+
+  walkerCounter += 1
+end
+
+puts max_earned
+puts winner
